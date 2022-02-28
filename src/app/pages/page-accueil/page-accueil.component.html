@@ -5,7 +5,7 @@
         paramétrable par son parent.
     -->
     <div class="custom-main container p-3">
-        <input class="form-control" type="text" placeholder="Recherche ta belle plante"
+        <input (input)="searchFilter($event)" class="form-control" type="text" placeholder="Recherche ta belle plante"
             aria-label="Recherche ta belle plante">
 
         <div class="py-3">
@@ -15,7 +15,7 @@
             <button class="btn btn-outline-success btn-sm me-2">Avis</button>
         </div>
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-4">
-            <div *ngFor="let product of listProduct" class="col">
+            <div *ngFor="let product of listProductFiltered" class="col">
                 <app-card-plant [plant]="product"></app-card-plant>
             </div>
         </div>

@@ -8,9 +8,11 @@ import * as _ from 'underscore';
   templateUrl: './page-accueil.component.html',
   styleUrls: ['./page-accueil.component.scss']
 })
-export class PageAccueilComponent {
+export class PageAccueilComponent implements OnInit {
   // private data!: any[]; same as below
-  private data: any[] | undefined;
+  private data!: any[];
+  public plantTitleData!: any[] | undefined;
+  public listProductFiltered!: any[];
   public listCategories!: string[];
   private subListProduct: Subscription;
   public listProduct!: any[];
@@ -25,14 +27,23 @@ export class PageAccueilComponent {
       
       response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
       this.listProduct = [...response];
+      this.listProductFiltered = this.listProduct;
     })
 
     this.plantService.getListProductsChaud();
   }
 
-  // ngOnInit(): void {
+  ngOnInit(): void {
+    //this.searchFilter();
+  }
 
-  // }
+  searchFilter(event: any) {
+    console.log(event.target.value);
+    let value = event.target.value;
+    this.plantTitleData = this.data.filter(x => x.product_name.toLowerCase().includes(value.toLocaleLowerCase()));
+    console.log(this.plantTitleData);
+    this.listProductFiltered = this.plantTitleData;
+  }
 
   // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
   ngOnDestroy(): void {
