@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './filter-side-bar.component.html',
   styleUrls: ['./filter-side-bar.component.scss']
 })
-export class FilterSideBarComponent implements OnInit {
+export class FilterSideBarComponent{
   @Input() listCategoriesFilter: string[];
   filteredArray: string[] = [];
   @Output() submittedFilteredArray: EventEmitter<any> = new EventEmitter;
@@ -14,8 +14,8 @@ export class FilterSideBarComponent implements OnInit {
     this.listCategoriesFilter = [];
    }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
   
   public onChangeValue(eventValue: any, category:string): void {
     //console.log('Event Change :',eventValue);
