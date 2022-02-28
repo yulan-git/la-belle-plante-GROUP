@@ -108,9 +108,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "la-belle-plante"
+  "defaultProject": "la-belle-plante",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
