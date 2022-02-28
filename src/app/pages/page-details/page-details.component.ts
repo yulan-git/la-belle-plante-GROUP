@@ -5,12 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-details.component.html',
   styleUrls: ['./page-details.component.scss']
 })
-export class PageDetailsComponent implements OnInit {
+export class PageDetailsComponent  {
 
   constructor() { 
   }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
 
 }
