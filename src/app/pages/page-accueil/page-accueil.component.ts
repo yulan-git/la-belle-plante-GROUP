@@ -41,7 +41,7 @@ export class PageAccueilComponent {
   }
 
   changeArray(arrayFiltered: any[]) {
-    console.log(arrayFiltered);
+    //console.log(arrayFiltered);
     this.listProductFiltered = [];
     this.listProduct.forEach(product => {
       if (arrayFiltered.includes(product.product_breadcrumb_label)) {
