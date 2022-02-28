@@ -1,0 +1,24 @@
+<div class="d-flex align-items-stretch">
+    <app-filter-side-bar [listCategoriesFilter]="listCategories"></app-filter-side-bar>
+    <!-- Ici on communique du parent vers l'enfant à l'aide du property binding   
+        la propriété de l'enfant possède un décorateur @Input pour rendre sa valeur 
+        paramétrable par son parent.
+    -->
+    <div class="custom-main container p-3">
+        <input class="form-control" type="text" placeholder="Recherche ta belle plante"
+            aria-label="Recherche ta belle plante">
+
+        <div class="py-3">
+            Trier par : 
+            <button class="btn btn-outline-success btn-sm me-2">Prix</button> 
+            <button class="btn btn-outline-success btn-sm me-2">Ordre Alpha</button> 
+            <button class="btn btn-outline-success btn-sm me-2">Avis</button>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-4">
+            <div *ngFor="let product of listProduct" class="col">
+                <app-card-plant [plant]="product"></app-card-plant>
+            </div>
+        </div>
+    </div>
+
+</div>

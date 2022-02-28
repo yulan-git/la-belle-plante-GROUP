@@ -1,0 +1,19 @@
+<div class="plant card" style="width: 14rem;">
+    
+    <app-icon class="like" [name]="'heart'" [color]="'#e35d6a'"></app-icon>
+
+    <img src="{{plant.product_url_picture}}" class="card-img-top" alt="image de {{plant.product_name}}">
+    <div class="card-body">
+        <h6 class="card-title"> {{plant.product_name}} </h6> 
+        <div class="card-content">
+            <app-avis-bar></app-avis-bar>
+        </div>
+        <!-- a terme la bar d'avis -->
+        <div class="d-flex flex-row align-items-end justify-content-between">
+            <div class="card-content"> 
+                <span class="align-bottom"> {{plant.product_unitprice_ati}} € </span>
+            </div>
+            <a href="#" class="btn btn-success">Pour moi !</a>
+        </div>
+    </div>
+</div>

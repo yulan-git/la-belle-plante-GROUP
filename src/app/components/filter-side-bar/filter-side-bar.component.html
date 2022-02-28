@@ -1,0 +1,16 @@
+<div class="custom-side-bar flex-shrink-0 bg-white border-end">
+    <div class="p-3">
+        <span class="fs-5 fw-semibold">Filtres</span>
+    </div>
+    <ul class="list-unstyled ps-0 border-top">
+        <div class="p-3">
+            <p class="mb-1 fs-5 fw-semibold">Catégories</p>
+            <div class="form-check" *ngFor="let category of listCategoriesFilter">
+                <input type="checkbox" class="form-check-input" value="{{category}}" id="{{category}}" (change)="onChangeValue($event)">
+                <label for="{{category}}" class="form-check-label">
+                    {{ category }}
+                </label>
+            </div>
+        </div>
+    </ul>
+</div>
