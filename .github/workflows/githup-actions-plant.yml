@@ -1,8 +1,7 @@
-```yaml
 name: CI-CD
 on: 
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
   workflow_dispatch:
 
@@ -65,4 +64,3 @@ jobs:
         path: './build'
     
     #  TO COMPLETE TO DEPLOY
-```
