@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterSideBarComponent } from './filter-side-bar.component';
+// import { FilterSideBarComponent } from './filter-side-bar.component';
 
-describe('FilterSideBarComponent', () => {
-  let component: FilterSideBarComponent;
-  let fixture: ComponentFixture<FilterSideBarComponent>;
+// describe('FilterSideBarComponent', () => {
+//   let component: FilterSideBarComponent;
+//   let fixture: ComponentFixture<FilterSideBarComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FilterSideBarComponent ]
-    })
-    .compileComponents();
-  });
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ FilterSideBarComponent ]
+//     })
+//     .compileComponents();
+//   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FilterSideBarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(FilterSideBarComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
-});
+//   // it('should create', () => {
+//   //   expect(component).toBeTruthy();
+//   // });
+// });
