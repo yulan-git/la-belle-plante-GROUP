@@ -8,7 +8,7 @@ import * as _ from 'underscore';
   templateUrl: './page-accueil.component.html',
   styleUrls: ['./page-accueil.component.scss']
 })
-export class PageAccueilComponent implements OnInit {
+export class PageAccueilComponent {
   // private data!: any[]; same as below
   private data!: any[];
   public plantTitleData!: any[] | undefined;
@@ -33,9 +33,6 @@ export class PageAccueilComponent implements OnInit {
     this.plantService.getListProductsChaud();
   }
 
-  ngOnInit(): void {
-    //this.searchFilter();
-  }
 
   searchFilter(event: any) {
     console.log(event.target.value);
