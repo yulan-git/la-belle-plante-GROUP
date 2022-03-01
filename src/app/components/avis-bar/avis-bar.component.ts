@@ -5,14 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './avis-bar.component.html',
   styleUrls: ['./avis-bar.component.scss']
 })
-export class AvisBarComponent implements OnInit {
+export class AvisBarComponent {
   public statesStar: any[];
   
   constructor() {
     this.statesStar = new Array(5)
    }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
 
 }

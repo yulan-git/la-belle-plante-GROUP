@@ -6,7 +6,7 @@ import { PlantService } from 'src/app/services/plant.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
   public title: string;
   public lengthListProduct!: number;
 
@@ -18,7 +18,7 @@ export class NavBarComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
 
 }

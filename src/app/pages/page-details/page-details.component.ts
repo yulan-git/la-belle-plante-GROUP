@@ -13,8 +13,6 @@ export class PageDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const productId = this.activeRoute.snapshot.queryParamMap.get('productId');
-
-    
     
     if (productId) {
       this.plantService.getProductById(productId).subscribe( product => {

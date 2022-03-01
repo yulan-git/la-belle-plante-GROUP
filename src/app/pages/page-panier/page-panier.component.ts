@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-panier.component.html',
   styleUrls: ['./page-panier.component.scss']
 })
-export class PagePanierComponent implements OnInit {
+export class PagePanierComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
 }

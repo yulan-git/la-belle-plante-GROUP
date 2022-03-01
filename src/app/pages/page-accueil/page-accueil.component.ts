@@ -8,7 +8,7 @@ import * as _ from 'underscore';
   templateUrl: './page-accueil.component.html',
   styleUrls: ['./page-accueil.component.scss']
 })
-export class PageAccueilComponent implements OnInit {
+export class PageAccueilComponent {
   // private data!: any[]; same as below
   private data: any[] | undefined;
   public listCategories!: string[];
@@ -31,10 +31,7 @@ export class PageAccueilComponent implements OnInit {
     this.plantService.getListProductsChaud();
   }
 
-  ngOnInit(): void {
-    
 
-  }
 
   // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
   ngOnDestroy(): void {
