@@ -9,7 +9,7 @@
     "test": "ng test --configuration=ci",
     "api": "json-server db/data.json",
     "lint": "ng lint",
-    "heroku-postbuild": "ng build — prod"
+    "heroku-postbuild": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
