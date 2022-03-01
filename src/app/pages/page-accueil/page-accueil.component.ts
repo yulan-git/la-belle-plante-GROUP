@@ -14,6 +14,7 @@ export class PageAccueilComponent implements OnInit {
   public listCategories!: string[];
   private subListProduct: Subscription;
   public listProduct!: any[];
+  public productId!: any;
 
   constructor(private plantService: PlantService) {
 
@@ -31,6 +32,7 @@ export class PageAccueilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
 
   }
 

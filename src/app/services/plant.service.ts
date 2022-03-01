@@ -87,4 +87,9 @@ export class PlantService {
       this.subjectListProduct$.next(data);
     })
   }
+
+
+  getProductById(productId:any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/list_products?product_id=${productId}`)
+  }
 }
