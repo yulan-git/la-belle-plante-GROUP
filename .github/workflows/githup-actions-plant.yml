@@ -65,6 +65,8 @@ jobs:
 
     - name: Deploy App
       uses: actions/checkout@v2
+    
+    - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
       with:
         heroku_api_key: ${{ secrets.LA_BELLE_PLANTE }}
         heroku_app_name: "labelleplante"
