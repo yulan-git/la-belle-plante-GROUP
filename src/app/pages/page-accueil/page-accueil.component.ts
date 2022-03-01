@@ -14,6 +14,7 @@ export class PageAccueilComponent {
   public listCategories!: string[];
   private subListProduct: Subscription;
   public listProduct!: any[];
+  listProductFiltered!: any[];
 
   constructor(private plantService: PlantService) {
 
@@ -23,8 +24,9 @@ export class PageAccueilComponent {
       this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
       console.log(this.listCategories);
       
-      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
+      //response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
       this.listProduct = [...response];
+      this.listProductFiltered = this.listProduct;
     })
 
     this.plantService.getListProductsChaud();
@@ -37,6 +39,13 @@ export class PageAccueilComponent {
   // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
   ngOnDestroy(): void {
     this.subListProduct.unsubscribe();
+  }
+
+  getAvisNumber(event:any) {
+    //console.log(event);
+    //console.log(this.listProductFiltered.filter(x=> x.product_avis == 4));
+    
+    this.listProductFiltered = this.listProduct.filter(x => x.product_avis >= event);
   }
 
 }

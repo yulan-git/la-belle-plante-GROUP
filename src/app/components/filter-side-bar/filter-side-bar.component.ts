@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter-side-bar',
@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FilterSideBarComponent{
   @Input() listCategoriesFilter: string[];
+  @Output() avisNumber = new EventEmitter<any>();
 
   constructor() {
     this.listCategoriesFilter = [];
@@ -17,6 +18,12 @@ export class FilterSideBarComponent{
 
   public onChangeValue(eventValue: any): void {
     console.log('Event Change :',eventValue);
+  }
+
+  getAvisNumber(event: any) {
+    let index = event+1;
+    //console.log(index);
+    this.avisNumber.emit(index);
   }
 
 }

@@ -9,6 +9,7 @@ export class IconComponent{
   @Input() name!: string;
   @Input() size!: number;
   @Input() color!: string;
+  
 
   constructor() { }
 

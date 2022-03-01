@@ -1,5 +1,9 @@
-<app-icon 
-    *ngFor="let item of statesStar"
-    [name]="'star'" 
-    [size]="1.2" 
-    [color]="'#ffbf00'"></app-icon>
+<div (mouseleave)="onMouseLeave()">
+    <app-icon *ngFor="let star of starStates; let starIndex = index" 
+    [name]="star.stateHoverUser ? 'star-fill' : 'star'"
+    [size]="1.2"
+    [color]="'#ffbf00'"
+    (mouseover)="onMouseOver(starIndex)"
+    (click)="onClickStar(starIndex)"
+    ></app-icon>
+</div>
