@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: devops-test-${{ github.run_id }}-${{ github.run_number }}
-        path: ./dist/la-belle-plante
+        path: ./dist/devops-test
 
   deploy: 
     needs: build
@@ -63,9 +63,6 @@ jobs:
     #     name: devops-test-${{ github.run_id }}-${{ github.run_number }} 
     #     path: './build'
 
-    - name: Run server
-      run: npm run start
-      
     - name: Deploy App
       uses: actions/checkout@v2
       with:
