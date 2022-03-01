@@ -43,14 +43,14 @@ export class PageAccueilComponent {
   constructor(private plantService: PlantService) {
 
     this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.data = response;
       this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
       console.log(this.listCategories);
-
-      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
+      //response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
       this.listProduct = [...response];
       this.listProductFiltered = this.listProduct;
+
     })
 
     this.plantService.getListProductsChaud();
@@ -77,4 +77,19 @@ export class PageAccueilComponent {
         product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue);
     }); this.plantService.getListProductsChaud();
   }
+
+  changeArray(arrayFiltered: any[]) {
+    //console.log(arrayFiltered);
+    this.listProductFiltered = [];
+    this.listProduct.forEach(product => {
+      if (arrayFiltered.includes(product.product_breadcrumb_label)) {
+        this.listProductFiltered.push(product);
+      } else if (arrayFiltered.length == 0) {
+        this.listProductFiltered = this.listProduct;
+      }
+    });
+
+
+  }
+
 }
