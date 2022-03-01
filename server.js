@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/dist/la-belle-plante'));
 app.get('/*', function(req,res) {
     res.sendFile(path.join(__dirname+'/dist/la-belle-plante/index.html') );
 });
-app.listen(process.env.PORT || 8083);
+app.listen(process.env.PORT || 8080);
 
 // ___________ SERVER ______________________
 server.use(middlewares)
