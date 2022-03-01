@@ -63,4 +63,16 @@ jobs:
         name: devops-test-${{ github.run_id }}-${{ github.run_number }} 
         path: './build'
     
-    #  TO COMPLETE TO DEPLOY
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.name: Deploy
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.LA_BELLE_PLANTE }}
+          heroku_app_name: "labelleplante"
+          heroku_email: "gaellecoue@gmail.com"
