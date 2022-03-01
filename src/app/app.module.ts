@@ -13,6 +13,8 @@ import { FilterSideBarComponent } from './components/filter-side-bar/filter-side
 import { CardPlantComponent } from './components/card-plant/card-plant.component';
 import { IconComponent } from './components/icon/icon.component';
 import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
+import {NgxSliderModule} from "@angular-slider/ngx-slider";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

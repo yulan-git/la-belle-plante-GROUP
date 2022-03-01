@@ -15,12 +15,12 @@ export class PlantService {
   obs$ = new Observable(fluxData => fluxData.next(Math.random()));
 
   // Test des Observables chauds
-  sub$ = new Subject<string>(); 
+  sub$ = new Subject<string>();
 
   behav$ = new BehaviorSubject<string>('Video Janvier 2021');
 
 
-  
+
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseUrlApi;
 
@@ -28,12 +28,12 @@ export class PlantService {
     this.obs$.subscribe(data => {
       console.log("Observer 1: ", data)
     })
-    
+
     this.obs$.subscribe(data => {
       console.log("Observer 2: ", data)
     })
-    
-    
+
+
     // Emission via observable chauds
     this.sub$.next('Newletter Janvier 2021'); // envoyer une autre newletter Janvier 2021
     console.log('...Envoie nl janvier 2021')
@@ -54,11 +54,11 @@ export class PlantService {
     this.sub$.next('Newletter Mars 2021'); // envoyer une autre newletter Mars 2021
     console.log('...Envoie nl Mars 2021')
 
-    
+
     this.sub$.subscribe(data => {
       console.log("Observer Subject 4: ", data);
     })
-    
+
     this.sub$.next('Newletter Avril 2021'); // envoyer une autre newletter Mars 2021
     console.log('...Envoie nl Avril 2021')
 
@@ -74,7 +74,6 @@ export class PlantService {
     })
 
     this.behav$.next('Video Avril 2021');
-
    }
 
   getListProducts(): Observable<any[]> {

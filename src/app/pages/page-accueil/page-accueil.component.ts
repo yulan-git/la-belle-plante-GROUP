@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
+import {LabelType, Options} from "@angular-slider/ngx-slider";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-page-accueil',
@@ -16,6 +18,27 @@ export class PageAccueilComponent {
   public listCategories!: string[];
   private subListProduct: Subscription;
   public listProduct!: any[];
+  price = {
+    minPrice: 100,
+    maxPrice: 400
+  }
+  options: Options = {
+    floor: 0,
+    ceil: 500,
+    showTicks: true,
+    tickStep: 30,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "<b>Min price:</b> $" + value;
+        case LabelType.High:
+          return "<b>Max price:</b> $" + value;
+        default:
+          return "$" + value;
+      }
+    }
+  };
+
 
   constructor(private plantService: PlantService) {
 
@@ -24,7 +47,7 @@ export class PageAccueilComponent {
       this.data = response;
       this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
       console.log(this.listCategories);
-      
+
       response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
       this.listProduct = [...response];
       this.listProductFiltered = this.listProduct;
@@ -47,4 +70,11 @@ export class PageAccueilComponent {
     this.subListProduct.unsubscribe();
   }
 
+  changeRandomPrice($event:any) {
+    let subscription = this.plantService.subjectListProduct$.subscribe(products => {
+      products.length = 40;
+      this.listProductFiltered = products.filter(product =>
+        product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue);
+    }); this.plantService.getListProductsChaud();
+  }
 }
