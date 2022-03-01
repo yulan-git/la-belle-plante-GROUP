@@ -19,6 +19,11 @@ export class PageAccueilComponent {
   private subListProduct: Subscription;
   public listProduct!: any[];
   public productId!: any;
+
+  public currentObjectPrice = {
+    value : 0,
+    highValue: 0
+  }
   price = {
     minPrice: 100,
     maxPrice: 400
@@ -59,10 +64,10 @@ export class PageAccueilComponent {
 
 
   searchFilter(event: any) {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     let value = event.target.value;
     this.plantTitleData = this.data.filter(x => x.product_name.toLowerCase().includes(value.toLocaleLowerCase()));
-    console.log(this.plantTitleData);
+    //console.log(this.plantTitleData);
     this.listProductFiltered = this.plantTitleData;
   }
 
@@ -72,11 +77,15 @@ export class PageAccueilComponent {
   }
 
   changeRandomPrice($event:any) {
-    let subscription = this.plantService.subjectListProduct$.subscribe(products => {
-      products.length = 40;
-      this.listProductFiltered = products.filter(product =>
+    // let subscription = this.plantService.subjectListProduct$.subscribe(products => {
+    //   products.length = 40;
+    this.currentObjectPrice.value = $event.value;
+    this.currentObjectPrice.highValue = $event.highValue;
+    console.log($event);
+    
+      this.listProductFiltered = this.listProductFiltered.filter(product =>
         product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue);
-    }); this.plantService.getListProductsChaud();
+    // }); this.plantService.getListProductsChaud();
   }
 
   changeArray(arrayFiltered: any[]) {
@@ -85,8 +94,10 @@ export class PageAccueilComponent {
     this.listProduct.forEach(product => {
       if (arrayFiltered.includes(product.product_breadcrumb_label)) {
         this.listProductFiltered.push(product);
+        this.changeRandomPrice(this.currentObjectPrice);
       } else if (arrayFiltered.length == 0) {
         this.listProductFiltered = this.listProduct;
+        this.changeRandomPrice(this.currentObjectPrice);
       }
     });
 
