@@ -5,12 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './card-plant.component.html',
   styleUrls: ['./card-plant.component.scss']
 })
-export class CardPlantComponent{
-  @Input() plant: any;
-  
-  constructor() { }
 
-  // ngOnInit(): void {
-  // }
+export class CardPlantComponent {
+  @Input() plant: any;
+  constructor() { }
 
 }

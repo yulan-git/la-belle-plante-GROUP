@@ -14,8 +14,6 @@ export class FilterSideBarComponent{
     this.listCategoriesFilter = [];
    }
 
-  // ngOnInit(): void {
-  // }
   
   public onChangeValue(eventValue: any, category:string): void {
     //console.log('Event Change :',eventValue);

@@ -6,7 +6,8 @@ import { PlantService } from 'src/app/services/plant.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent  {
+
+export class NavBarComponent {
   public title: string;
   public lengthListProduct!: number;
 
@@ -17,8 +18,5 @@ export class NavBarComponent  {
       this.lengthListProduct = data.length;
     })
   }
-
-  // ngOnInit(): void {
-  // }
 
 }

@@ -12,8 +12,4 @@ export class AvisBarComponent {
     this.statesStar = new Array(5)
    }
 
-  // ngOnInit(): void {
-    
-  // }
-
 }

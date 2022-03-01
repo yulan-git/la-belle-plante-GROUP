@@ -18,6 +18,7 @@ export class PageAccueilComponent {
   public listCategories!: string[];
   private subListProduct: Subscription;
   public listProduct!: any[];
+  public productId!: any;
   price = {
     minPrice: 100,
     maxPrice: 400
