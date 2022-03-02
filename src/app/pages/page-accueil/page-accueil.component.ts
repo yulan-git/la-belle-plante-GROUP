@@ -76,7 +76,7 @@ export class PageAccueilComponent {
   searchFilter(event: any) {
     //console.log(event.target.value);
     let value = event.target.value;
-    this.plantTitleData = this.data.filter(x => x.product_name.toLowerCase().includes(value.toLocaleLowerCase()));
+    this.plantTitleData = this.listProduct.filter(x => x.product_name.toLowerCase().includes(value.toLocaleLowerCase()));
     //console.log(this.plantTitleData);
     this.listProductFiltered = this.plantTitleData;
   }
