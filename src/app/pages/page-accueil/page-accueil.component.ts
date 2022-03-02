@@ -12,18 +12,28 @@ import { LabelType, Options } from "@angular-slider/ngx-slider";
 export class PageAccueilComponent {
   // private data!: any[]; same as below
   private data!: any[];
-  public plantTitleData!: any[] | undefined;
   public listProductFiltered!: any[];
   public listCategories!: string[];
   private subListProduct: Subscription;
   public listProduct!: any[];
   public productId!: any;
   public sortState: string = 'asc';
+  avisNumber: number = 1;
+  stringSearch:string = "";
+  arrayCategory: any[] = [];
 
   public currentObjectPrice = {
     value: 0,
     highValue: 0
   }
+
+  public objectFilter = {
+    avisNumber: this.avisNumber,
+    stringSearch: this.stringSearch,
+    arrayCategory: this.arrayCategory,
+    currentObjectPrice: this.currentObjectPrice
+  }
+
   price = {
     minPrice: 100,
     maxPrice: 400
@@ -48,15 +58,16 @@ export class PageAccueilComponent {
 
   constructor(private plantService: PlantService) {
 
+    console.log(this.objectFilter);
+    
+
     this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
-      //console.log(response);
       this.data = response;
       this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
       console.log(this.listCategories);
       //response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
       this.listProduct = [...response];
       this.listProductFiltered = this.listProduct;
-
     })
 
     this.plantService.getListProductsChaud();
@@ -76,9 +87,9 @@ export class PageAccueilComponent {
   searchFilter(event: any) {
     //console.log(event.target.value);
     let value = event.target.value;
-    this.plantTitleData = this.listProduct.filter(x => x.product_name.toLowerCase().includes(value.toLocaleLowerCase()));
-    //console.log(this.plantTitleData);
-    this.listProductFiltered = this.plantTitleData;
+    this.stringSearch = value;
+    this.objectFilter.stringSearch = value;
+    this.filter(this.objectFilter);
   }
 
   // methode de cycle de vie de mon composant qui est executée juste avant que l'instance de mon composant soit détruite
@@ -87,36 +98,44 @@ export class PageAccueilComponent {
   }
 
   changeRandomPrice($event: any) {
-    // let subscription = this.plantService.subjectListProduct$.subscribe(products => {
-    //   products.length = 40;
     this.currentObjectPrice.value = $event.value;
     this.currentObjectPrice.highValue = $event.highValue;
-    console.log($event);
-
-    this.listProductFiltered = this.listProductFiltered.filter(product =>
-      product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue);
-    // }); this.plantService.getListProductsChaud();
+    this.objectFilter.currentObjectPrice = this.currentObjectPrice;
+    this.filter(this.objectFilter);
   }
 
   changeArray(arrayFiltered: any[]) {
-    //console.log(arrayFiltered);
-    this.listProductFiltered = [];
-    this.listProduct.forEach(product => {
-      if (arrayFiltered.includes(product.product_breadcrumb_label)) {
-        this.listProductFiltered.push(product);
-        this.changeRandomPrice(this.currentObjectPrice);
-      } else if (arrayFiltered.length == 0) {
-        this.listProductFiltered = this.listProduct;
-        this.changeRandomPrice(this.currentObjectPrice);
-      }
-    });
+    this.arrayCategory = arrayFiltered;
+    this.objectFilter.arrayCategory = arrayFiltered;
+    this.filter(this.objectFilter);
   }
 
   getAvisNumber(event:any) {
-    //console.log(event);
-    //console.log(this.listProduct.filter(x=> x.product_avis == event));
+    this.avisNumber = event;
+    this.objectFilter.avisNumber = event;
+    this.filter(this.objectFilter); 
+  }
 
-    this.listProductFiltered = this.listProduct.filter(x => x.product_avis >= event);
+  filter(obj: any) {        
+
+    this.subListProduct = this.plantService.subjectListProduct$.subscribe(products => {
+      if (obj.avisNumber != 0) {
+        this.listProductFiltered = this.listProductFiltered.filter(x => x.product_avis >= obj.avisNumber);
+      }
+      if (obj.arrayCategory.length != 0) {
+        this.listProductFiltered = this.listProductFiltered.filter(x => obj.arrayCategory.includes(x.product_breadcrumb_label));
+      }
+      if (obj.stringSearch != "") {
+        this.listProductFiltered = this.listProductFiltered.filter(x => x.product_name.toLowerCase().includes(obj.stringSearch.toLocaleLowerCase()));
+      }
+      if (obj.currentObjectPrice.value != 0 && obj.currentObjectPrice.highValue != 0) {
+        this.listProductFiltered = this.listProductFiltered.filter(product =>
+          product.product_unitprice_ati >= obj.currentObjectPrice.value && product.product_unitprice_ati <= obj.currentObjectPrice.highValue);
+      }
+    })
+
+    this.plantService.getListProductsChaud();
+    
   }
 
 }
