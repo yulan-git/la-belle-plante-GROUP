@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
-import { LabelType, Options } from "@angular-slider/ngx-slider";
+import {LabelType, Options} from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'app-page-accueil',
@@ -21,7 +21,7 @@ export class PageAccueilComponent {
   public sortState: string = 'asc';
 
   public currentObjectPrice = {
-    value: 0,
+    value : 0,
     highValue: 0
   }
   price = {
@@ -62,35 +62,18 @@ export class PageAccueilComponent {
     this.plantService.getListProductsChaud();
   }
 
-  sortByPrice(product: any, name: string) {
-    //this.sortState == 'asc' ? this.sortBy(name): this.sortBy(name).reverse();
-    if (this.sortState == 'asc') {
-      return parseFloat(product[name]);
-      // this.sortState = 'desc';
-    } else if (this.sortState == 'desc') {
-      return parseFloat(product[name]);
-      //this.sortState = 'asc';
-    }
-    return
+  sortByName(name: string) {
+    this.sortState == 'asc' ? this.sortBy(name, 'desc') : this.sortBy(name, 'asc').reverse();
   }
-  sortByName(name: string, order: string) {
-    return this.sortState == order ? this.listProductFiltered.sort((a, b) => a.product_name.localeCompare(b.product_name)) : this.listProductFiltered.sort((a, b) => a.product_name.localeCompare(b.product_name)).reverse();
-    //this.sortState == 'asc' ? this.sortBy(name, 'desc') : this.sortBy(name, 'asc').reverse();
-  }
-  sortByAvis(name: string) {
-    this.sortState == 'asc' ? this.sortBy(name) : this.sortBy(name).reverse();
-  }
-
-  sortBy(name: string) {
-    //this.sortState = 'asc';
+  
+  private sortBy(name: string, order: string) {
+    this.sortState = order;
     return this.listProductFiltered = _.sortBy(this.listProductFiltered, (product: any) => {
-      if (/[\.]/.test(product[name])) {
-        return this.sortByPrice(product, name);
-      } else {
-        return this.sortByName(name, 'asc')
-      }
+      return isNaN(product[name]) == false ? parseFloat(product[name]) : product[name];
     });
   }
+
+
 
   searchFilter(event: any) {
     //console.log(event.target.value);
@@ -105,15 +88,15 @@ export class PageAccueilComponent {
     this.subListProduct.unsubscribe();
   }
 
-  changeRandomPrice($event: any) {
+  changeRandomPrice($event:any) {
     // let subscription = this.plantService.subjectListProduct$.subscribe(products => {
     //   products.length = 40;
     this.currentObjectPrice.value = $event.value;
     this.currentObjectPrice.highValue = $event.highValue;
     console.log($event);
-
-    this.listProductFiltered = this.listProductFiltered.filter(product =>
-      product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue);
+    
+      this.listProductFiltered = this.listProductFiltered.filter(product =>
+        product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue);
     // }); this.plantService.getListProductsChaud();
   }
 
