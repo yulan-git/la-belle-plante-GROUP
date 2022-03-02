@@ -10,9 +10,9 @@
 
         <div class="py-3">
             Trier par :
-            <button class="btn btn-outline-success btn-sm me-2">Prix</button>
-            <button class="btn btn-outline-success btn-sm me-2">Ordre Alpha</button>
-            <button class="btn btn-outline-success btn-sm me-2">Avis</button>
+            <button (click)="sortBy('product_unitprice_ati')" class="btn btn-outline-success btn-sm me-2">Prix</button>
+            <button (click)= "sortBy('product_name')" class="btn btn-outline-success btn-sm me-2">Ordre Alpha</button>
+            <button (click)="sortBy('product_avis')" class="btn btn-outline-success btn-sm me-2">Avis</button>
         </div>
 
         <div class="d-flex justify-content-start">
