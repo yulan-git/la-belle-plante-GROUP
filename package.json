@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --configuration=ci",
     "lint": "ng lint",
+    "api": "json-server db/data.json",
     "heroku-postbuild": "ng build --configuration production"
   },
   "private": true,
