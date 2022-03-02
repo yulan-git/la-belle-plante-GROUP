@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { PlantService } from 'src/app/services/plant.service';
 
 @Component({
   selector: 'app-card-plant',
@@ -8,6 +10,10 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class CardPlantComponent {
   @Input() plant: any;
-  constructor() { }
+
+
+
+  constructor() {
+   }
 
 }

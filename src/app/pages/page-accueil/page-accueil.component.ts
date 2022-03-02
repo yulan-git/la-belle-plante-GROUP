@@ -56,15 +56,11 @@ export class PageAccueilComponent {
   };
 
 
-  constructor(private plantService: PlantService) {
-
-    console.log(this.objectFilter);
-    
+  constructor(private plantService: PlantService) {    
 
     this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
       this.data = response;
       this.listCategories = _.uniq(this.data.map(x => x.product_breadcrumb_label));
-      console.log(this.listCategories);
       //response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
       this.listProduct = [...response];
       this.listProductFiltered = this.listProduct;
