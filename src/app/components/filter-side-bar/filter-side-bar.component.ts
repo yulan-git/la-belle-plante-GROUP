@@ -9,6 +9,7 @@ export class FilterSideBarComponent{
   @Input() listCategoriesFilter: string[];
   filteredArray: string[] = [];
   @Output() submittedFilteredArray: EventEmitter<any> = new EventEmitter;
+  @Output() avisNumber = new EventEmitter<any>();
 
   constructor() {
     this.listCategoriesFilter = [];
@@ -33,6 +34,12 @@ export class FilterSideBarComponent{
 
   changeArray() {
     this.submittedFilteredArray.emit(this.filteredArray);
+  }
+
+  getAvisNumber(event: any) {
+    let index = event+1;
+    //console.log(index);
+    this.avisNumber.emit(index);
   }
 
 }

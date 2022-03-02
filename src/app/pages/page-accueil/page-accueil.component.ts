@@ -131,4 +131,11 @@ export class PageAccueilComponent {
     });
   }
 
+  getAvisNumber(event:any) {
+    //console.log(event);
+    //console.log(this.listProduct.filter(x=> x.product_avis == event));
+
+    this.listProductFiltered = this.listProduct.filter(x => x.product_avis >= event);
+  }
+
 }
