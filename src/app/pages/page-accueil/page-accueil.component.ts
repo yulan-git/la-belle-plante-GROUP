@@ -62,33 +62,14 @@ export class PageAccueilComponent {
     this.plantService.getListProductsChaud();
   }
 
-  sortByPrice(product: any, name: string) {
-    //this.sortState == 'asc' ? this.sortBy(name): this.sortBy(name).reverse();
-    if (this.sortState == 'asc') {
-      return parseFloat(product[name]);
-      // this.sortState = 'desc';
-    } else if (this.sortState == 'desc') {
-      return parseFloat(product[name]);
-      //this.sortState = 'asc';
-    }
-    return
-  }
-  sortByName(name: string, order: string) {
-    return this.sortState == order ? this.listProductFiltered.sort((a, b) => a.product_name.localeCompare(b.product_name)) : this.listProductFiltered.sort((a, b) => a.product_name.localeCompare(b.product_name)).reverse();
-    //this.sortState == 'asc' ? this.sortBy(name, 'desc') : this.sortBy(name, 'asc').reverse();
-  }
-  sortByAvis(name: string) {
-    this.sortState == 'asc' ? this.sortBy(name) : this.sortBy(name).reverse();
+  sortByName(name: string) {
+    this.sortState == 'asc' ? this.sortBy(name, 'desc') : this.sortBy(name, 'asc').reverse();
   }
 
-  sortBy(name: string) {
-    //this.sortState = 'asc';
+  private sortBy(name: string, order: string) {
+    this.sortState = order;
     return this.listProductFiltered = _.sortBy(this.listProductFiltered, (product: any) => {
-      if (/[\.]/.test(product[name])) {
-        return this.sortByPrice(product, name);
-      } else {
-        return this.sortByName(name, 'asc')
-      }
+      return isNaN(product[name]) == false ? parseFloat(product[name]) : product[name];
     });
   }
 
