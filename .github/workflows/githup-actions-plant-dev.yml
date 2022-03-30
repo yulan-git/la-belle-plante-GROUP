@@ -61,7 +61,7 @@ jobs:
       uses: actions/download-artifact@v2
       with: 
         name: la-belle-plante-${{ github.run_id }}-${{ github.run_number }} 
-        path: './build'
+        path: './labelleplante'
 
     - name: Copy repository contents via scp
       uses: appleboy/scp-action@master
@@ -71,8 +71,8 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.LA_BELLE_PLANTE_KEY }}
       with:
-        source: "./build"
-        target: "/var/www/labelleplante/"
+        source: "./labelleplante/"
+        target: "/var/www/"
     
     # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
     #   with:
