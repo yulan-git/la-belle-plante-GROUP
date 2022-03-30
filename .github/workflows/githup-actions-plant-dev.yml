@@ -89,7 +89,7 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.LA_BELLE_PLANTE_KEY }}
-        run: ls
+        script: build
     
     # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
     #   with:
