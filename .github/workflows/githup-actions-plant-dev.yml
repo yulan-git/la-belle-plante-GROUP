@@ -80,7 +80,7 @@ jobs:
         KEY: ${{ secrets.LA_BELLE_PLANTE_KEY }}
       with:
         source: "."
-        target: "/var/www/"
+        target: "/var/www/labelleplante"
 
     - name: Executing remote command
       uses: appleboy/ssh-action@master
