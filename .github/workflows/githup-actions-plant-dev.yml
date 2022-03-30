@@ -71,7 +71,7 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.LA_BELLE_PLANTE_KEY }}
       with:
-        source: "."
+        source: "./build"
         target: "/var/www/labelleplante"
 
     - name: Executing remote command
