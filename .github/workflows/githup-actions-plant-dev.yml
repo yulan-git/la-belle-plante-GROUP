@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: devops-test-${{ github.run_id }}-${{ github.run_number }}
-        path: ./dist/devops-test
+        path: ./dist/la-belle-plante
 
   deploy: 
     needs: build
